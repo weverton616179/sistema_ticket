@@ -1,0 +1,15 @@
+@{
+    Layout = "_Layout";
+}
+<h3>Novo Ticket</h3>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input name="title" class="form-control" maxlength="120" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Mensagem inicial</label>
+        <textarea name="firstMessage" class="form-control" rows="4" required></textarea>
+    </div>
+    <button class="btn btn-success">Criar</button>
+</form>

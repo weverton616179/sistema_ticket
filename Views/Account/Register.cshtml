@@ -1,0 +1,39 @@
+@model TicketSystem.ViewModels.RegisterViewModel
+@{
+    Layout = "_Layout";
+}
+<h3>Registrar</h3>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form method="post" class="mt-3" asp-action="Register">
+    <div class="row">
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Nome</label>
+            <input asp-for="FirstName" class="form-control"/>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Sobrenome</label>
+            <input asp-for="LastName" class="form-control"/>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input asp-for="Email" class="form-control"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input asp-for="Password" class="form-control" type="password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Confirmar Senha</label>
+        <input asp-for="ConfirmPassword" class="form-control" type="password"/>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button class="btn btn-success">Criar conta</button>
+</form>

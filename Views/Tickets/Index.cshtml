@@ -1,0 +1,37 @@
+@model IEnumerable<TicketSystem.Models.Ticket>
+@using TicketSystem.Models
+@{
+    Layout = "_Layout";
+    string Badge(TicketStatus s) => s switch {
+        TicketStatus.Open => "<span class='badge badge-open'>Aberto</span>",
+        TicketStatus.InProgress => "<span class='badge badge-inprogress'>Em andamento</span>",
+        TicketStatus.Closed => "<span class='badge badge-closed'>Fechado</span>",
+        _ => s.ToString()
+    };
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Tickets</h3>
+    <a class="btn btn-primary" href="/Tickets/Create">Abrir novo</a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Criado em</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr onclick="location.href='/Tickets/Details/@t.Id'" style="cursor:pointer;">
+                <td>@t.Id</td>
+                <td>@t.Title</td>
+                <td>@Html.Raw(Badge(t.Status))</td>
+                <td>@t.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

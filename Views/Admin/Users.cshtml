@@ -1,0 +1,34 @@
+@model List<(TicketSystem.Models.ApplicationUser User, System.Collections.Generic.IList<string> Roles)>
+@{
+    Layout = "_Layout";
+}
+<h3>Admin Geral — Gerenciar Usuários</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>E-mail</th>
+            <th>Funções atuais</th>
+            <th>Definir função</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.User.Email</td>
+                <td>@string.Join(", ", item.Roles)</td>
+                <td>
+                    <form method="post" action="/Admin/SetRole">
+                        <input type="hidden" name="userId" value="@item.User.Id" />
+                        <select name="role" class="form-select form-select-sm" style="width:180px;display:inline-block;">
+                            <option value="User">Usuário</option>
+                            <option value="Admin">Admin</option>
+                            <option value="SuperAdmin">Admin Geral</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary ms-1">Salvar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
